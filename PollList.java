@@ -1,5 +1,7 @@
 package application;
 
++ // Olivia
+	
 public class PollList {
 	private Poll[] polls;
 	private int numOfSeats;
