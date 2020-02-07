@@ -1,5 +1,6 @@
 package application;
 
+// Dvij
 public class Poll {
 	private String name;
 	private Party[] parties;
