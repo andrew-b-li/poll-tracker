@@ -1,0 +1,5 @@
+#!/bin/sh
+javac Party.java
+javac Poll.java
+javac PollList.java
+java PollList
