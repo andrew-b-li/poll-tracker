@@ -8,9 +8,15 @@ public class Poll {
 	private int partiesInPoll;
 
 	public Poll(String name, int maxNumberOfParties) {
-		this.name = name; 
-		parties = new Party[maxNumberOfParties];
+		this.name = name;
+		if (maxNumberOfParties >= 1) {
+			parties = new Party[maxNumberOfParties];
+		}
+		else {
+			parties = new Party[10];
+		}
 	}
+	
 	
 	public String getPollName() {
 		return name;
