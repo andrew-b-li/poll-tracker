@@ -18,21 +18,74 @@ public class PollList {
 	}
 
 	public void addPoll(Poll aPoll) {
+		if (aPoll == null) {
+			System.out.println("Error: Argument is null");
+			return;
+		}
+		
 		// Get the index of the next empty space in the poll list
-		// If the poll list is full, return -1 (could never be a good index)
 		System.out.println("Calling getEmptyPollIndex: ");
 		int goodIndex = getEmptyPollIndex(polls);
 		System.out.println("Good index= " + goodIndex);
 		
+		String sentPollName = aPoll.getPollName();
+		for(int i=0;i<goodIndex;i++) {
+			if(sentPollName == polls[i].getPollName()) {
+				polls[i] = aPoll;
+				return;
+			}
+		}
+		
 		if (goodIndex != polls.length) {
 			polls[goodIndex] = aPoll;
 		} else {
-			System.out.println("Poll list is full!");
+			System.out.println("Error: Poll list is full!");
 		}
+		return;
 	}
 	
 	public Poll getAggregatePoll(String[] partyNames) {
-		return polls[0];
+		Poll bob = new Poll("aggregate",partyNames.length);
+		for(int k=0;k<partyNames.length;k++) {
+			int counter = 0;
+			float averageSeats = 0.0f;
+			float averagePercent = 0.0f;
+			for(int i=0;i<polls.length;i++) {
+				if(this.polls[i].getParty(partyNames[k]) != null) {
+					if(this.polls[i].getParty(partyNames[k]).getName() == partyNames[k]) {
+						counter++;
+						averageSeats = averageSeats + this.polls[i].getParty(partyNames[k]).getProjectedNumberOfSeats();
+						averagePercent = averagePercent + this.polls[i].getParty(partyNames[k]).getProjectedPercentageOfVotes();
+					}
+				}
+			}
+			float realSeats = (float) (averageSeats/counter);
+			float realPercent = (float) (averagePercent/counter);
+			Party dummyParty = new Party(partyNames[k],realSeats,realPercent);
+			bob.addParty(dummyParty);
+		}
+		// Check totals
+		float seatSum = 0.0f;
+		float percentSum = 0.0f;
+		for(int i=0;i<bob.getNumberOfParties();i++) {
+			seatSum = seatSum + bob.getParty(partyNames[i]).getProjectedNumberOfSeats();
+			percentSum = percentSum + bob.getParty(partyNames[i]).getProjectedPercentageOfVotes();
+		}
+		
+		if (seatSum > numOfSeats) {
+			float factor = numOfSeats/seatSum;
+			for(int i=0;i<bob.getNumberOfParties();i++) {
+				bob.getParty(partyNames[i]).setProjectedNumberOfSeats(bob.getParty(partyNames[i]).getProjectedNumberOfSeats()*factor);
+			}
+		}
+		
+		if (percentSum > 100.0f) {
+			float factor = 100.0f/percentSum;
+			for(int i=0;i<bob.getNumberOfParties();i++) {
+				bob.getParty(partyNames[i]).setProjectedPercentageOfVotes(bob.getParty(partyNames[i]).getProjectedPercentageOfVotes()*factor);
+			}
+		}
+		return bob;
 	}
 	
 	// Set index=0, check to see if it's empty
@@ -65,17 +118,17 @@ public class PollList {
 	}
 	
 	public static void main(String[] args) {
-		Party conservative = new Party("Conservative",100,0.444f);
-		Party liberal = new Party("Liberal",50,0.222f);
-		Party ndp = new Party("NDP",75,0.334f);
+		Party conservative = new Party("Conservative",200,60.0f);
+		Party liberal = new Party("Liberal",100,30.0f);
+		Party ndp = new Party("NDP",150,40.0f);
 		
-		Poll testPoll = new Poll("Test Poll",3);
+		Poll testPoll1 = new Poll("Test Poll 1",3);
 		Poll testPoll2 = new Poll("Test Poll 2",2);
 		Poll testPoll3 = new Poll("Test Poll 3",2);
 		
-		testPoll.addParty(conservative);
-		testPoll.addParty(liberal);
-		testPoll.addParty(ndp);
+		testPoll1.addParty(conservative);
+		testPoll1.addParty(liberal);
+		testPoll1.addParty(ndp);
 		
 		testPoll2.addParty(conservative);
 		testPoll2.addParty(liberal);
@@ -85,11 +138,16 @@ public class PollList {
 		
 		PollList testList = new PollList(3,225);
 		
-		testList.addPoll(testPoll);
+		testList.addPoll(testPoll1);
 		testList.addPoll(testPoll2);
 		testList.addPoll(testPoll3);
 		
 		System.out.println(testList);
+		
+		String[] myString = {"Conservative","Liberal","NDP"};
+		Poll newAggregate = new Poll("aggregate",myString.length);
+		newAggregate = testList.getAggregatePoll(myString);
+		System.out.println(newAggregate);
 	}
 	
 }
