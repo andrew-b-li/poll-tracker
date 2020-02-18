@@ -1,4 +1,4 @@
-// package application;
+package application;
 
 // Dvij
 public class Poll {
@@ -9,6 +9,7 @@ public class Poll {
 	public Poll(String name, int maxNumberOfParties) {
 		this.name = name; 
 		parties = new Party[maxNumberOfParties];
+		partiesInPoll = 0;
 	}
 	
 	public String getPollName() {
@@ -18,11 +19,17 @@ public class Poll {
 	public int getNumberOfParties() {
 		return partiesInPoll;
 	}
+	
 	public void addParty(Party aParty) {
 		parties[partiesInPoll++] = aParty;
 	}
 
 	public Party getParty(String name) {
+		for(int i=0;i<partiesInPoll;i++) {
+			if (name == parties[i].getName()) {
+				return parties[i];
+			}
+		}
 		return null;
 	}
 	
@@ -36,6 +43,10 @@ public class Poll {
 	
 	@Override
 	public String toString() {
-		return name;
+		String result = name + ":" + "\n";
+		for (int i=0;i<partiesInPoll;i++) {
+			result = result + parties[i].getName() + " " + parties[i].getProjectedPercentageOfVotes() + "% " + parties[i].getProjectedNumberOfSeats() + "\n";
+		}
+		return result;
 	}
 }

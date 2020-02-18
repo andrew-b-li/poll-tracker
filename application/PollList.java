@@ -1,4 +1,4 @@
-// package application;
+package application;
 
 public class PollList {
 	private Poll[] polls;
@@ -21,14 +21,13 @@ public class PollList {
 		// Get the index of the next empty space in the poll list
 		// If the poll list is full, return -1 (could never be a good index)
 		System.out.println("Calling getEmptyPollIndex: ");
-		int goodIndex = getEmptyPollIndex();
+		int goodIndex = getEmptyPollIndex(polls);
 		System.out.println("Good index= " + goodIndex);
 		
-		// Adds aPoll into the next available space
-		try {
+		if (goodIndex != polls.length) {
 			polls[goodIndex] = aPoll;
-		} catch (Exception e) {
-			System.out.println("Poll list already full.");
+		} else {
+			System.out.println("Poll list is full!");
 		}
 	}
 	
@@ -40,19 +39,13 @@ public class PollList {
 	// If empty, return that index
 	// If not, increment index
 	// If we get to the end of an array (error), return -1
-	private int getEmptyPollIndex() {
-		int index=0;
-		while (true) {
-			try {
-				if (polls[index]==null) {
-					return index;
-				} else {
-					index++;
-				}
-			} catch (Exception e) {
-				return -1;
+	private static int getEmptyPollIndex(Poll[] polls) {
+		for(int i=polls.length-1;i>=0;i--) {
+			if (polls[i]!=null) {
+				return i+1;
 			}
 		}
+		return 0;
 	}
 	
 	public String toString() {
@@ -90,7 +83,7 @@ public class PollList {
 		testPoll3.addParty(liberal);
 		testPoll3.addParty(ndp);
 		
-		PollList testList = new PollList(2,225);
+		PollList testList = new PollList(3,225);
 		
 		testList.addPoll(testPoll);
 		testList.addPoll(testPoll2);
