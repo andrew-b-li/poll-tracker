@@ -1,4 +1,3 @@
-//My Part
 package application;
 
 public class TextApplication {
