@@ -42,7 +42,7 @@ public class Poll {
 	public void addParty(Party aParty) {
 		int index = 0;
 		String testName = null;
-		for (int i = 0; i < partiesInPoll; ++i) {
+		for (int i = 0; i < partiesInPoll; i++) {
 			String partyName = parties[i].getName().toLowerCase();
 			if (partyName.equals(aParty.getName().toLowerCase())) {
 				testName = partyName;
@@ -54,6 +54,7 @@ public class Poll {
 		}
 		else if (parties[0] == null) {
 			parties[0] = aParty;
+			partiesInPoll++;
 		}
 		else if (testName != null) {
 			parties[index] = aParty;
@@ -84,7 +85,7 @@ public class Poll {
 	}
 	
 	public Party[] getPartiesSortedBySeats() {
-		Party [] sortedSeats = new Party[parties.length];
+		Party [] sortedSeats = new Party[partiesInPoll];
 		for (int i = 0; i < sortedSeats.length; i++) {
 			String copyName = parties[i].getName();
 			float copySeats = parties[i].getProjectedNumberOfSeats();
