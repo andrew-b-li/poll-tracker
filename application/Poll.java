@@ -104,7 +104,7 @@ public class Poll {
 	}
 
 	public Party[] getPartiesSortedByVotes() {
-		Party [] sortedVotes = new Party[parties.length];
+		Party [] sortedVotes = new Party[partiesInPoll];
 		for (int i = 0; i < sortedVotes.length; i++) {
 			String copyName = parties[i].getName();
 			float copySeats = parties[i].getProjectedNumberOfSeats();
