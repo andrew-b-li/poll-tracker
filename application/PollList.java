@@ -51,7 +51,7 @@ public class PollList {
 			float averageSeats = 0.0f;
 			float averagePercent = 0.0f;
 			for(int i=0;i<polls.length;i++) {
-				if (this.polls[k].getParty(partyNames[k]) != null) {
+				if (this.polls[i].getParty(partyNames[k]) != null) {
 					if(this.polls[i].getParty(partyNames[k]).getName() == partyNames[k]) {
 						counter++;
 						averageSeats = averageSeats + this.polls[i].getParty(partyNames[k]).getProjectedNumberOfSeats();
@@ -64,6 +64,7 @@ public class PollList {
 			Party dummyParty = new Party(partyNames[k],realSeats,realPercent);
 			bob.addParty(dummyParty);
 		}
+		System.out.println("BOB: " + bob);
 		// Check totals
 		float seatSum = 0.0f;
 		float percentSum = 0.0f;
@@ -143,7 +144,7 @@ public class PollList {
 		testList.addPoll(testPoll3);
 		
 		// Print TestList:
-		// System.out.println("testList: " + testList);
+		System.out.println("testList: " + testList);
 		
 		String[] myString = {"Conservative","Liberal","NDP"};
 		Poll newAggregate = new Poll("aggregate",myString.length);

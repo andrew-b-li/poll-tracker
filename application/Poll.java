@@ -42,7 +42,7 @@ public class Poll {
 	public void addParty(Party aParty) {
 		int index = 0;
 		String testName = null;
-		for (int i = 0; i < partiesInPoll; ++i) {
+		for (int i = 0; i < partiesInPoll; i++) {
 			String partyName = parties[i].getName().toLowerCase();
 			if (partyName.equals(aParty.getName().toLowerCase())) {
 				testName = partyName;
@@ -52,9 +52,9 @@ public class Poll {
 		if (aParty == null) {
 			System.out.println("The party is not defined.");
 		}
-		else if (parties[0] == null) {
-			parties[0] = aParty;
-		}
+		//else if (parties[0] == null) {
+		//	parties[0] = aParty;
+		//}
 		else if (testName != null) {
 			parties[index] = aParty;
 		}
@@ -69,8 +69,13 @@ public class Poll {
 	public Party getParty(String name) {
 		Party partyWithName = null;
 		for (Party p: parties) {
-			if (p.getName() == name) {
-				partyWithName = p;
+			//System.out.println("OLIVIA 1 " + p);
+			//System.out.println("OLIVIA 2 " + name);
+			//System.out.println("OLIVIA 3 " + p.getName());
+			if (p != null) {
+				if (p.getName() == name) {
+					partyWithName = p;
+				}	
 			}
 		}
 		return partyWithName;
