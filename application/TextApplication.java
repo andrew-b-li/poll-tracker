@@ -106,6 +106,7 @@ public class TextApplication {
 	
 	public static void main(String[] args) {
 		run();
+		System.out.println("REST OF THE CODE");
 		int numOfSeats = 100;
 		PollList polls = new PollList(4, numOfSeats);
 		Factory factory = new Factory(numOfSeats);
@@ -129,7 +130,7 @@ public class TextApplication {
 		Party test = new Party("TEST",69,69.0f);
 
 		
-        String[] displayNameList = {"Conservative","liberal","NDP","Hello"};
+        String[] displayNameList = {"Conservative","Liberal","NDP","Hello"};
         		
         
 		Poll testPoll1 = new Poll("Test Poll 1",3);

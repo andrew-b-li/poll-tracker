@@ -24,9 +24,9 @@ public class PollList {
 		}
 		
 		// Get the index of the next empty space in the poll list
-		// Debugging: System.out.println("Calling getEmptyPollIndex: ");
+		//System.out.println("Calling getEmptyPollIndex: ");
 		int goodIndex = getEmptyPollIndex(polls);
-		// Debugging: System.out.println("Good index= " + goodIndex);
+		//System.out.println("Good index= " + goodIndex);
 		
 		String sentPollName = aPoll.getPollName();
 		for(int i=0;i<goodIndex;i++) {
@@ -65,9 +65,13 @@ public class PollList {
 				float realPercent = (float) (averagePercent/counter);
 				Party dummyParty = new Party(partyNames[k],realSeats,realPercent);
 				bob.addParty(dummyParty);
+			} else {
+				float realSeats = (float) averageSeats;
+				float realPercent = (float) averagePercent;
+				Party dummyParty = new Party(partyNames[k],realSeats,realPercent);
+				bob.addParty(dummyParty);
 			}
 		}
-		// Debugging: System.out.println("BOB: " + bob);
 		// Check totals
 		float seatSum = 0.0f;
 		float percentSum = 0.0f;
@@ -76,6 +80,7 @@ public class PollList {
 				seatSum = seatSum + bob.getParty(partyNames[i]).getProjectedNumberOfSeats();
 				percentSum = percentSum + bob.getParty(partyNames[i]).getProjectedPercentageOfVotes();
 			}
+		}
 		
 		if (seatSum > numOfSeats) {
 			if (seatSum != 0) {
@@ -93,9 +98,7 @@ public class PollList {
 					bob.getParty(partyNames[k]).setProjectedPercentageOfVotes(bob.getParty(partyNames[k]).getProjectedPercentageOfVotes()*factor);
 				}
 			}
-		}
-	}
-	return bob;
+		} return bob;
 	}
 	
 	// Set index=0, check to see if it's empty
@@ -153,13 +156,13 @@ public class PollList {
 		testList.addPoll(testPoll3);
 		
 		// Print TestList:
-		//System.out.println("testList: " + testList);
+		System.out.println("testList: " + testList);
 		
 		String[] myString = {"Conservative","Liberal","NDP"};
 		Poll newAggregate = new Poll("aggregate",myString.length);
 		newAggregate = testList.getAggregatePoll(myString);
 		System.out.println(newAggregate);
-		System.out.println(newAggregate);
+		//System.out.println(newAggregate);
 		//System.out.println(newAggregate);
 		//System.out.println(newAggregate);
 	}
