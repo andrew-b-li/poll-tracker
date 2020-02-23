@@ -64,7 +64,7 @@ public class PollList {
 			Party dummyParty = new Party(partyNames[k],realSeats,realPercent);
 			bob.addParty(dummyParty);
 		}
-		System.out.println("BOB: " + bob);
+		// Debugging: System.out.println("BOB: " + bob);
 		// Check totals
 		float seatSum = 0.0f;
 		float percentSum = 0.0f;

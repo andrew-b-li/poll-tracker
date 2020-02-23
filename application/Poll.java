@@ -52,9 +52,10 @@ public class Poll {
 		if (aParty == null) {
 			System.out.println("The party is not defined.");
 		}
-		//else if (parties[0] == null) {
-		//	parties[0] = aParty;
-		//}
+		else if (parties[0] == null) {
+			parties[0] = aParty;
+			partiesInPoll++;
+		}
 		else if (testName != null) {
 			parties[index] = aParty;
 		}
