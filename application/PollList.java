@@ -59,30 +59,39 @@ public class PollList {
 					}
 				}
 			}
-			float realSeats = (float) (averageSeats/counter);
-			float realPercent = (float) (averagePercent/counter);
-			Party dummyParty = new Party(partyNames[k],realSeats,realPercent);
-			bob.addParty(dummyParty);
+			
+			if (counter != 0) {
+				float realSeats = (float) (averageSeats/counter);
+				float realPercent = (float) (averagePercent/counter);
+				Party dummyParty = new Party(partyNames[k],realSeats,realPercent);
+				bob.addParty(dummyParty);
+			}
 		}
 		// Debugging: System.out.println("BOB: " + bob);
 		// Check totals
 		float seatSum = 0.0f;
 		float percentSum = 0.0f;
 		for(int i=0;i<bob.getNumberOfParties();i++) {
-			seatSum = seatSum + bob.getParty(partyNames[i]).getProjectedNumberOfSeats();
-			percentSum = percentSum + bob.getParty(partyNames[i]).getProjectedPercentageOfVotes();
+			if (bob.getParty(partyNames[i]) != null) {
+				seatSum = seatSum + bob.getParty(partyNames[i]).getProjectedNumberOfSeats();
+				percentSum = percentSum + bob.getParty(partyNames[i]).getProjectedPercentageOfVotes();
+			}
 		
 		if (seatSum > numOfSeats) {
-			float factor = numOfSeats/seatSum;
-			for(int j=0;j<bob.getNumberOfParties();j++) {
-				bob.getParty(partyNames[j]).setProjectedNumberOfSeats(bob.getParty(partyNames[j]).getProjectedNumberOfSeats()*factor);
+			if (seatSum != 0) {
+				float factor = numOfSeats/seatSum;
+				for(int j=0;j<bob.getNumberOfParties();j++) {
+					bob.getParty(partyNames[j]).setProjectedNumberOfSeats(bob.getParty(partyNames[j]).getProjectedNumberOfSeats()*factor);
+				}
 			}
 		}
 		
 		if (percentSum > 100.0f) {
-			float factor = 100.0f/percentSum;
-			for(int k=0;k<bob.getNumberOfParties();k++) {
-				bob.getParty(partyNames[k]).setProjectedPercentageOfVotes(bob.getParty(partyNames[k]).getProjectedPercentageOfVotes()*factor);
+			if (percentSum != 0) {
+				float factor = 100.0f/percentSum;
+				for(int k=0;k<bob.getNumberOfParties();k++) {
+					bob.getParty(partyNames[k]).setProjectedPercentageOfVotes(bob.getParty(partyNames[k]).getProjectedPercentageOfVotes()*factor);
+				}
 			}
 		}
 	}
@@ -144,12 +153,15 @@ public class PollList {
 		testList.addPoll(testPoll3);
 		
 		// Print TestList:
-		System.out.println("testList: " + testList);
+		//System.out.println("testList: " + testList);
 		
 		String[] myString = {"Conservative","Liberal","NDP"};
 		Poll newAggregate = new Poll("aggregate",myString.length);
 		newAggregate = testList.getAggregatePoll(myString);
 		System.out.println(newAggregate);
+		System.out.println(newAggregate);
+		//System.out.println(newAggregate);
+		//System.out.println(newAggregate);
 	}
 	
 }
