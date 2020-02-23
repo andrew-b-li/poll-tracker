@@ -156,14 +156,11 @@ public class PollList {
 		testList.addPoll(testPoll3);
 		
 		// Print TestList:
-		System.out.println("testList: " + testList);
+		//System.out.println("testList: " + testList);
 		
 		String[] myString = {"Conservative","Liberal","NDP"};
 		Poll newAggregate = new Poll("aggregate",myString.length);
 		newAggregate = testList.getAggregatePoll(myString);
-		System.out.println(newAggregate);
-		//System.out.println(newAggregate);
-		//System.out.println(newAggregate);
 		//System.out.println(newAggregate);
 	}
 	
