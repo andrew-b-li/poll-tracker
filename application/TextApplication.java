@@ -16,7 +16,7 @@ public class TextApplication {
 	public void displayPollDataBySeat(Poll aPoll) { //first method to add - visualize one poll's data
 		System.out.println(aPoll.getPollName()); //prints the poll name
 		for (Party aParty: aPoll.getPartiesSortedBySeats()) { //for each party in the poll, print name and stats
-				System.out.println(aParty.textVisualizationBySeats(1,1,1.0));
+				System.out.println(aParty.textVisualizationBySeats(25,12,9.0));
 				}
 		System.out.println(""); //prints a space between polls
 		}
@@ -124,13 +124,13 @@ public class TextApplication {
 		
 
 		
-		Party conservative = new Party("Conservative",200,60.0f);
-		Party liberal = new Party("Liberal",100,30.0f);
-		Party ndp = new Party("NDP",150,40.0f);
-		Party test = new Party("TEST",69,69.0f);
+		Party conservative = new Party("Conservative",200,0.600f);
+		Party liberal = new Party("Liberal",100,0.300f);
+		Party ndp = new Party("NDP",150,0.400f);
+		Party test = new Party("TEST",69,0.69f);
 
 		
-        String[] displayNameList = {"Conservative","Liberal","NDP","Hello"};
+        String[] displayNameList = {"Conservative","Liberal","NDP","TEST"};
         		
         
 		Poll testPoll1 = new Poll("Test Poll 1",3);
@@ -158,7 +158,7 @@ public class TextApplication {
 		for (Poll aPoll: testList.getPolls()) {
 			System.out.println(aPoll);
 			for (Party aParty: aPoll.getPartiesSortedByVotes()) {
-				System.out.println(aParty.textVisualizationBySeats(1,1,1.0));
+				System.out.println(aParty.textVisualizationBySeats(25,12,9.0));
 			}
 			System.out.println("");
 

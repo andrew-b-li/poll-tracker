@@ -131,9 +131,9 @@ public class PollList {
 	}
 	
 	public static void main(String[] args) {
-		Party conservative = new Party("Conservative",200,60.0f);
-		Party liberal = new Party("Liberal",100,30.0f);
-		Party ndp = new Party("NDP",150,40.0f);
+		Party conservative = new Party("Conservative",200,0.600f);
+		Party liberal = new Party("Liberal",100,0.300f);
+		Party ndp = new Party("NDP",150,0.400f);
 		
 		Poll testPoll1 = new Poll("Test Poll 1",3);
 		Poll testPoll2 = new Poll("Test Poll 2",2);
@@ -161,7 +161,7 @@ public class PollList {
 		String[] myString = {"Conservative","Liberal","NDP"};
 		Poll newAggregate = new Poll("aggregate",myString.length);
 		newAggregate = testList.getAggregatePoll(myString);
-		//System.out.println(newAggregate);
+		System.out.println(newAggregate);
 	}
 	
 }
