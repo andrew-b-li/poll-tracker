@@ -136,7 +136,7 @@ public class TextApplication {
 		Poll testPoll1 = new Poll("Test Poll 1",3);
 		Poll testPoll2 = new Poll("Test Poll 2",2);
 		Poll testPoll3 = new Poll("Test Poll 3",2);
-				testPoll1.addParty(conservative);
+		testPoll1.addParty(conservative);
 		testPoll1.addParty(liberal);
 		testPoll1.addParty(ndp);
 
