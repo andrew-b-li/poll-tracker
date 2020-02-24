@@ -5,11 +5,31 @@ package application;
 import java.util.Arrays;
 import java.util.Comparator;
 
+/**
+ * @author Dvij
+ * @version iteration 1
+ * 
+ * The class Poll allows for the generation a named political poll which can contain 
+ * multiple political parties (Party []). Each party contained within the poll 
+ * has a unique name, projected number of seats and projected percentage of votes 
+ * for that poll.
+ * 
+ * Poll contains getters for the name of the poll, a specific party in the poll and
+ * number of total parties in the poll. The class has sorters which sort the poll by
+ * either seats won by each party or percentage of votes. 
+ */
 public class Poll {
 	private String name;
 	private Party[] parties;
 	private int partiesInPoll;
-
+	
+	
+	/**
+	 * The constructor generates a empty poll and assigns it the name provided.
+	 * 
+	 * @param name				 Name which will be assigned to the poll
+	 * @param maxNumberOfParties The max number of parties which can be put into the poll 
+	 */
 	public Poll(String name, int maxNumberOfParties) {
 		this.name = name;
 		if (maxNumberOfParties >= 1) {
@@ -21,10 +41,21 @@ public class Poll {
 	}
 	
 	
+	/**
+	 * Getter for the name of the poll.
+	 * 
+	 * @return The name of the poll
+	 */
 	public String getPollName() {
 		return name;
 	}
 	
+	
+	/**
+	 * Getter for the number of parties in the poll.
+	 * 
+	 * @return Number of parties in the poll.
+	 */
 	public int getNumberOfParties() {
 		int index = 0;
 		if (parties[index] == null) {
@@ -39,6 +70,15 @@ public class Poll {
 		} 
 		return partiesInPoll;
 	}
+	
+	/**
+	 * Adds a party specified by the provided name to the end of the poll lit. 
+	 * Prints an error message if the party does not exists or if the poll is full.
+	 * If a party already present in the poll has the same name as the one provided,
+	 * the method replaces the old party with the new one.
+	 *  
+	 * @param aParty The name of the party being added to the poll
+	 */
 	public void addParty(Party aParty) {
 		int index = 0;
 		String testName = null;
@@ -52,6 +92,7 @@ public class Poll {
 		if (aParty == null) {
 			System.out.println("The party is not defined.");
 		}
+		//Adds a party to index one if no party is present (special case)
 		else if (parties[0] == null) {
 			parties[0] = aParty;
 			partiesInPoll++;
@@ -66,7 +107,14 @@ public class Poll {
 			parties[partiesInPoll++] = aParty;
 		}
 	}
-
+	
+	
+	/**
+	 * Getter for a party within a poll. 
+	 * 
+	 * @param name	Name of the party looking to be obtained
+	 * @return The party specified by the name if it exists, otherwise returns null.
+	 */
 	public Party getParty(String name) {
 		Party partyWithName = null;
 		for (Party p: parties) {
@@ -77,6 +125,13 @@ public class Poll {
 		return partyWithName;
 	}
 	
+	
+	/**
+	 * @author Dvij
+	 * 
+	 * Comparator class which compares two parties within a poll based on the number
+	 * of seats won by each.
+	 */
 	static class SeatsComparator implements Comparator<Party> {	
 		@Override
 		public int compare(Party a, Party b) {
@@ -84,7 +139,14 @@ public class Poll {
 		}
 	}
 	
+	
+	/**
+	 * Sorts the parties in a poll by the number of seats won by each party from greatest to fewest
+	 * and returns them as an list of parties (array party[])
+	 * @return Array of Party[] which is sorted by number of seats won. 
+	 */
 	public Party[] getPartiesSortedBySeats() {
+		//Making a deep copy of the poll (parties array)
 		Party [] sortedSeats = new Party[partiesInPoll];
 		for (int i = 0; i < sortedSeats.length; i++) {
 			String copyName = parties[i].getName();
@@ -96,14 +158,28 @@ public class Poll {
 		return sortedSeats;
 	}
 	
+	
+	/**
+	 * @author Dvij
+	 * 
+	 * Comparator class which compares two parties within a poll based on the number
+	 * of votes received by each.
+	 */
 	static class VotesComparator implements Comparator<Party> {	
 		@Override
 		public int compare(Party a, Party b) {
 			return Float.compare(b.getProjectedPercentageOfVotes(), a.getProjectedPercentageOfVotes());
 		}
 	}
-
+	
+	
+	/**
+	 * Sorts the parties in a poll by the percentage of votes received by each party from greatest to fewest
+	 * and returns them as an list of parties (array party[])
+	 * @return Array of Party[] which is sorted by percentage of votes. 
+	 */
 	public Party[] getPartiesSortedByVotes() {
+		//Making a deep copy of the poll (parties array)
 		Party [] sortedVotes = new Party[partiesInPoll];
 		for (int i = 0; i < sortedVotes.length; i++) {
 			String copyName = parties[i].getName();
@@ -115,6 +191,12 @@ public class Poll {
 		return sortedVotes;
 	}
 	
+	
+	/**
+	 * Convert the information contained within a poll to a string with 
+	 * format '<name><newline><string representation of first party><newline>
+	 * <string representation of second party><newline>..."
+	 */
 	@Override
 	public String toString() {
 		String pollString = name;
@@ -130,22 +212,34 @@ public class Poll {
 		return pollString;
 	}
 	
-	// Bonus
+	
+	//Bonus
+	/**
+	 * Creates and returns a part which is named 'Undetermined' and has the seats and
+	 * percentage of votes not already accounted for by the sum of all the other parties 
+	 * in a poll
+	 * @return A party with the number of seats and percentage of votes not accounted for in the poll.
+	 */
 	public Party undeterminedVotesAndSeats() {
 		String undeterminedName = "Undetermined";
 		float seatsCountedFor = 0.0f;
 		float votesCountedFor = 0.0f;
+		//Totaling the number of seats and percentage of votes already accounted for 
 		for (Party p: parties) {
 			seatsCountedFor = seatsCountedFor + p.getProjectedNumberOfSeats();
 			votesCountedFor = votesCountedFor + p.getProjectedPercentageOfVotes();
 		}
+		/* Calculating the unaccounted for seats and votes, and using them to create 
+		 * the 'Undetermined' party
+		 */
 		if (Math.round(votesCountedFor) < 100) {
-			int totalNumOfSeats = (int)(seatsCountedFor/(votesCountedFor/100));
+			int totalNumOfSeats = (int)(seatsCountedFor/(votesCountedFor));
 			float undeterminedSeats = totalNumOfSeats - seatsCountedFor;
-			float undeterminedVotes = 100.0f - votesCountedFor;
+			float undeterminedVotes = 1.0f - votesCountedFor;
 			Party undetermined = new Party(undeterminedName, undeterminedSeats, undeterminedVotes);
 			return undetermined;
 		}
+		//Returning 0.0 values with the 'Undetermined' party if all the votes are accounted for 
 		else {
 			float undeterminedSeats = 0.0f;
 			float undeterminedVotes = 0.0f;
@@ -154,6 +248,8 @@ public class Poll {
 		}
 	}
 	
+	
+	//For testing purposes
 	public static void main (String[] args) {
 		
 		//Checking Poll initialization
@@ -163,13 +259,13 @@ public class Poll {
 		System.out.println(testPoll.toString());
 		
 		//Generating parties
-		Party liberal = new Party("liberal", 30.0f, 30.0f);
-		Party Conservative = new Party("Conservative", 20.0f, 20.0f);
-		Party NDP = new Party("NDP", 20.0f, 20.0f);
-		Party BQ = new Party("BQ", 15.0f, 15.0f);
-		Party green = new Party("green", 15.0f, 15.0f);
-		Party Liberal = new Party("Liberal", 30.0f, 30.0f);
-		Party Extra = new Party("Extra", 100.0f, 100.0f);
+		Party liberal = new Party("liberal", 30.0f, 0.3f);
+		Party Conservative = new Party("Conservative", 20.0f, 0.2f);
+		Party NDP = new Party("NDP", 20.0f, 0.2f);
+		Party BQ = new Party("BQ", 15.0f, 0.15f);
+		Party green = new Party("green", 15.0f, 0.15f);
+		Party Liberal = new Party("Liberal", 30.0f, 0.3f);
+		Party Extra = new Party("Extra", 100.0f, 1.0f);
 		
 		//Populating testPoll
 		testPoll.addParty(liberal);
@@ -221,7 +317,7 @@ public class Poll {
 		System.out.println(testUndeterminedNotPresent.toString());
 		
 		//Checking undeterminedVotesAndSeats method with a poll which has undetermined votes and seats
-		Party Green = new Party("Green", 5.0f, 5.0f);
+		Party Green = new Party("Green", 5.0f, 0.05f);
 		testPoll.addParty(Green);
 		Party testUndeterminedPresent = testPoll.undeterminedVotesAndSeats();
 		System.out.println(testUndeterminedPresent.toString());
