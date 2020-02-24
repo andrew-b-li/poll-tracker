@@ -45,7 +45,7 @@ public class PollList {
 	}
 	
 	public Poll getAggregatePoll(String[] partyNames) {
-		Poll bob = new Poll("aggregate",partyNames.length);
+		Poll bob = new Poll("Aggregate",partyNames.length);
 		for(int k=0;k<partyNames.length;k++) {
 			int counter = 0;
 			float averageSeats = 0.0f;
@@ -159,7 +159,7 @@ public class PollList {
 		//System.out.println("testList: " + testList);
 		
 		String[] myString = {"Conservative","Liberal","NDP"};
-		Poll newAggregate = new Poll("aggregate",myString.length);
+		Poll newAggregate = new Poll("Aggregate",myString.length);
 		newAggregate = testList.getAggregatePoll(myString);
 		System.out.println(newAggregate);
 	}
