@@ -118,7 +118,7 @@ public class Poll {
 	public Party getParty(String name) {
 		Party partyWithName = null;
 		for (Party p: parties) {
-			if (p.getName() == name) {
+			if (p.getName().equals(name)) {
 				partyWithName = p;
 			}
 		}
