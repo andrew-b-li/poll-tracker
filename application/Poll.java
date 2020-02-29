@@ -24,16 +24,21 @@ public class Poll {
 
 
     /**
-     * The constructor generates a empty poll and assigns it the name provided.
+     * The constructor generates a empty poll and assigns it the name provided. 
+     * The Poll will contain the number of spots specified as long as the number 
+     * if greater then or equal to 1. 
      * 
      * @param name				 Name which will be assigned to the poll
      * @param maxNumberOfParties The max number of parties which can be put into the poll 
      */
     public Poll(String name, int maxNumberOfParties) {
         this.name = name;
+        /* set size of array to the one provided by maxNumberOfParties if int is >= 1.
+         * Otherwise set the size to 10.
+         */ 
         if (maxNumberOfParties >= 1) {
             parties = new Party[maxNumberOfParties];
-        } else {
+        } else { 
             parties = new Party[10];
         }
     }
@@ -56,6 +61,10 @@ public class Poll {
      */
     public int getNumberOfParties() {
         int index = 0;
+        /* Return 0 when no party is found in index 0. Otherwise loop through the poll
+         * until a null index is in countered, increment partiesInPoll each time.
+         * 
+         */
         if (parties[index] == null) {
             partiesInPoll = 0;
         } else {
@@ -79,6 +88,7 @@ public class Poll {
     public void addParty(Party aParty) {
         int index = 0;
         String testName = null;
+        // Find if the poll already contains a party with the same name (not case sensitive)
         for (int i = 0; i < partiesInPoll; i++) {
             String partyName = parties[i].getName().toLowerCase();
             if (partyName.equals(aParty.getName().toLowerCase())) {
@@ -89,15 +99,19 @@ public class Poll {
         if (aParty == null) {
             System.out.println("The party is not defined.");
         }
-        //Adds a party to index one if no party is present (special case)
+        //Adds a party to index 0 if no party is present (empty case)
         else if (parties[0] == null) {
             parties[0] = aParty;
             partiesInPoll++;
-        } else if (testName != null) {
+        } 
+        // replaces an existing party with aParty if they have the same name
+        else if (testName != null) {
             parties[index] = aParty;
         } else if (partiesInPoll >= parties.length) {
             System.out.println("The poll is full and no further party can be added.");
-        } else {
+        } 
+        // adds a party to the end of the list and increments party counter by +1
+        else {
             parties[partiesInPoll++] = aParty;
         }
     }
@@ -200,10 +214,12 @@ public class Poll {
     public String toString() {
         String pollString = name;
         for (Party p: parties) {
-            if (p != null) {
+        	if (p != null) {
                 String aParty = p.toString();
                 pollString = pollString + "\n" + aParty;
-            } else {
+            } 
+        	// prints null if a party does not exists at that index
+        	else {
                 pollString = pollString + "\nnull";
             }
         }
