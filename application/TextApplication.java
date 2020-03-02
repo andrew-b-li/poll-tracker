@@ -1,8 +1,14 @@
 // Andrew Li's class
 
-package model;
+package application;
 
 import java.util.Scanner;
+
+import model.Party;
+import model.Poll;
+import model.PollList;
+//added Factory
+import model.Factory;
 
 /**
  * @author Andrew

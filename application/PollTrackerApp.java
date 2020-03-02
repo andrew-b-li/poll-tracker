@@ -12,8 +12,6 @@ import javafx.stage.Stage;
 
 import model.Factory;
 import model.PollList;
-import model.TextApplication;
-
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
