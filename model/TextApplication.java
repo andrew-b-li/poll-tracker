@@ -1,6 +1,6 @@
 // Andrew Li's class
 
-package application;
+package model;
 
 import java.util.Scanner;
 
