@@ -1,6 +1,6 @@
 // Andrew Li's class
 
-package application;
+package model;
 
 import java.util.Scanner;
 
@@ -38,12 +38,11 @@ public class TextApplication {
      * Sorted by number of seats
      * 
      * @param aPoll			A Poll that will have its data visualized
-     * @param maxNumOfSeats The total number of seats available
      */
-    public void displayPollDataBySeat(Poll aPoll, int maxNumOfSeats) {
+    public void displayPollDataBySeat(Poll aPoll) {
         System.out.println(aPoll.getPollName());
         for (Party aParty: aPoll.getPartiesSortedBySeats()) {
-            System.out.println(aParty.textVisualizationBySeats(MAX_NUMBER_OF_STARS, 13, maxNumOfSeats / MAX_NUMBER_OF_STARS));
+            System.out.println(aParty.textVisualizationBySeats(MAX_NUMBER_OF_STARS, 13, polls.getNumOfSeats() / MAX_NUMBER_OF_STARS));
         }
         System.out.println("");
     }
@@ -56,13 +55,13 @@ public class TextApplication {
      * @param partyNames		An array of strings containing the names of parties to be included in the aggregate poll
      * @param maxNumOfSeats 	The total number of seats available
      */
-    public void displayPollsBySeat(String[] partyNames, int maxNumOfSeats) {
+    public void displayPollsBySeat(String[] partyNames) {
         for (Poll aPoll: polls.getPolls()) {
-            displayPollDataBySeat(aPoll, maxNumOfSeats);
+            displayPollDataBySeat(aPoll);
         }
 
         Poll aggregate = polls.getAggregatePoll(partyNames);
-        displayPollDataBySeat(aggregate, maxNumOfSeats);
+        displayPollDataBySeat(aggregate);
     }
 
     /**
@@ -89,7 +88,7 @@ public class TextApplication {
      * @param partyNames		An array of strings containing the names of parties to be included in the aggregate poll
      * @param maxNumOfSeats 	The total number of seats available
      */
-    public void displayPollsByVote(String[] partyNames, int maxNumOfSeats) {
+    public void displayPollsByVote(String[] partyNames) {
         for (Poll aPoll: polls.getPolls()) {
             displayPollDataByVote(aPoll);
         }
@@ -104,10 +103,9 @@ public class TextApplication {
      * 
      * @param chosenDisplayOption	The display option entered by the user (all, aggregate, or quit)	
      * @param chosenScanner 		The object used to provide user input
-     * @param chosenNumOfSeats 		The total number of seats available
      */
 
-    private void visualizeBySeat(String chosenDisplayOption, Scanner chosenScanner, int chosenNumOfSeats) {
+    private void visualizeBySeat(String chosenDisplayOption, Scanner chosenScanner) {
 
         while (!chosenDisplayOption.equals("quit")) {
             //Runs this block if the display option is aggregate
@@ -116,12 +114,12 @@ public class TextApplication {
                 String aggregatenames = chosenScanner.nextLine();
                 String[] aggregateNameList = aggregatenames.split(",");
                 System.out.println("");
-                displayPollsBySeat(aggregateNameList, chosenNumOfSeats);
+                displayPollsBySeat(aggregateNameList);
             }
             //Runs this block if the display option is all
             else if (chosenDisplayOption.equals("all")) {
                 for (Poll aPoll: polls.getPolls()) {
-                    displayPollDataBySeat(aPoll, chosenNumOfSeats);
+                    displayPollDataBySeat(aPoll);
                 }
             }
             //Runs this block if neither was entered
@@ -140,9 +138,8 @@ public class TextApplication {
      * 
      * @param chosenDisplayOption	The display option entered by the user (all, aggregate, or quit)	
      * @param chosenScanner 		The object used to provide user input
-     * @param chosenNumOfSeats 		The total number of seats available
      */
-    private void visualizeByVote(String chosenDisplayOption, Scanner chosenScanner, int chosenNumOfSeats) {
+    private void visualizeByVote(String chosenDisplayOption, Scanner chosenScanner) {
         while (!chosenDisplayOption.equals("quit")) {
             //Runs this block if the display option is aggregate
             if (chosenDisplayOption.equals("aggregate")) {
@@ -150,7 +147,7 @@ public class TextApplication {
                 String aggregatenames = chosenScanner.nextLine();
                 String[] aggregateNameList = aggregatenames.split(",");
                 System.out.println("");
-                displayPollsByVote(aggregateNameList, chosenNumOfSeats);
+                displayPollsByVote(aggregateNameList);
             }
             //Runs this block if the display option is all
             else if (chosenDisplayOption.equals("all")) {
@@ -257,10 +254,10 @@ public class TextApplication {
         TextApplication application = new TextApplication(polls);
 
         if (visualizationOption.equals("seat")) {
-            application.visualizeBySeat(displayOption, keyboard, numOfSeats);
+            application.visualizeBySeat(displayOption, keyboard);
         }
         else if (visualizationOption.equals("vote")) {
-            application.visualizeByVote(displayOption, keyboard, numOfSeats);
+            application.visualizeByVote(displayOption, keyboard);
         }
     }
 
@@ -275,21 +272,21 @@ public class TextApplication {
          * @author Nathaly Verwaal
          * Testing code initially provided by the skeleton
          */
-        //		int numOfSeats = 100;
-        //		PollList polls = new PollList(4, numOfSeats);
-        //		Factory factory = new Factory(numOfSeats);	
-        //		String[] partyNames = {"BQ","CPC","Green","Liberal","NDP","PPC","Rhinoceros"};
-        //		factory.setPartyNames(partyNames);
-        //		polls.addPoll(factory.createRandomPoll("Poll1"));
-        //		polls.addPoll(factory.createRandomPoll("Poll2"));
-        //		polls.addPoll(factory.createRandomPoll("Poll3"));
-        //		polls.addPoll(factory.createRandomPoll("Poll4"));
-        //		TextApplication testApp = new TextApplication(polls);
-        //		for (Poll aPoll: polls.getPolls()){
-        //			testApp.displayPollDataBySeat(aPoll, numOfSeats);
-        //			}
-        //      String[] testAggregateNameList = {"BQ","Green","NDP","PPC","Rhinoceros"};
-        //		testApp.displayPollsBySeat(testAggregateNameList, numOfSeats);
+//        		int numOfSeats = 100;
+//        		PollList polls = new PollList(4, numOfSeats);
+//        		Factory factory = new Factory(numOfSeats);	
+//        		String[] partyNames = {"BQ","CPC","Green","Liberal","NDP","PPC","Rhinoceros"};
+//        		factory.setPartyNames(partyNames);
+//        		polls.addPoll(factory.createRandomPoll("Poll1"));
+//        		polls.addPoll(factory.createRandomPoll("Poll2"));
+//        		polls.addPoll(factory.createRandomPoll("Poll3"));
+//        		polls.addPoll(factory.createRandomPoll("Poll4"));
+//        		TextApplication testApp = new TextApplication(polls);
+//        		for (Poll aPoll: polls.getPolls()){
+//        			testApp.displayPollDataBySeat(aPoll);
+//        			}
+//              String[] testAggregateNameList = {"BQ","Green","NDP","PPC","Rhinoceros"};
+//        		testApp.displayPollsBySeat(testAggregateNameList);
 
         /**
          *
@@ -299,67 +296,67 @@ public class TextApplication {
          *First creates a number of parties, polls, and a poll list. 
          */
 
-        //Setting the number of seats and creating some parties
-        //		int numOfSeats = 100;
-        //		Party conservative = new Party("Conservative",96,0.6f);
-        //		Party liberal = new Party("Liberal",30,0.3f);
-        //		Party ndp = new Party("NDP",95,0.4f);
-        //		Party conservative2 = new Party("Conservative",69,0.69f);
-        //		Party green = new Party("Green", 20, 0.35f);
-        //		
-        //		//Setting the list of names to be included in an aggregate poll
-        //		String[] testNameList = {"Conservative","Liberal","NDP"};
-        //
-        //	
-        //		//Creating some polls and adding parties to them
-        //		Poll testPoll1 = new Poll("Test Poll 1",3);
-        //		Poll testPoll2 = new Poll("Test Poll 2",2);
-        //		Poll testPoll3 = new Poll("Test Poll 3",4);
-        //		testPoll1.addParty(conservative);
-        //		testPoll1.addParty(liberal);
-        //		testPoll1.addParty(ndp);
-        //		testPoll2.addParty(conservative);
-        //		testPoll2.addParty(liberal);
-        //		testPoll3.addParty(liberal);
-        //		testPoll3.addParty(ndp);
-        //		testPoll3.addParty(conservative2);
-        //		testPoll3.addParty(green);
-        //
-        //		//Creating a PollList and adding the Polls to it
-        //		PollList testList = new PollList(3,225);
-        //		testList.addPoll(testPoll1);
-        //		testList.addPoll(testPoll2);
-        //		testList.addPoll(testPoll3);
-        //		
-        //		//Creating a TextApplication object using the test PollList
-        //		TextApplication testApp = new TextApplication(testList);
-        //		
-        //		//Checking displayPollDataBySeat functionality for a single poll
-        //		System.out.println("Testing display displayPollDataBySeat for a single poll");
-        //		testApp.displayPollDataBySeat(testPoll1, numOfSeats);
-        //		
-        //		//Checking displayPollDataBySeat functionality for a list of polls
-        //		System.out.println("Testing display displayPollDataBySeat for a pollList");
-        //		for (Poll aPoll: testList.getPolls()){
-        //			testApp.displayPollDataBySeat(aPoll, numOfSeats);
-        //		}
-        //
-        //		//Checking displayPollsBySeat functionality for a list of polls
-        //		System.out.println("Testing display displayPollsBySeat for a pollList");
-        //		testApp.displayPollsBySeat(testNameList, numOfSeats);
-        //		
-        //		//Checking displayPollDataByVote functionality for a single poll
-        //		System.out.println("Testing display displayPollDataByVote for a single poll");
-        //		testApp.displayPollDataByVote(testPoll1);
-        //		
-        //		//Checking displayPollDataByVote functionality for a list of polls
-        //		System.out.println("Testing display displayPollDataByVote for a pollList");
-        //		for (Poll aPoll: testList.getPolls()){
-        //			testApp.displayPollDataByVote(aPoll);
-        //		}
-        //
-        //		//Checking displayPollsByVote functionality for a list of polls
-        //		System.out.println("Testing display displayPollsByVote for a pollList");
-        //		testApp.displayPollsByVote(testNameList, numOfSeats);
+//        //Setting the number of seats and creating some parties
+//        		int numOfSeats = 100;
+//        		Party conservative = new Party("Conservative",96,0.6f);
+//        		Party liberal = new Party("Liberal",30,0.3f);
+//        		Party ndp = new Party("NDP",95,0.4f);
+//        		Party conservative2 = new Party("Conservative",69,0.69f);
+//        		Party green = new Party("Green", 20, 0.35f);
+//        		
+//        		//Setting the list of names to be included in an aggregate poll
+//        		String[] testNameList = {"Conservative","Liberal","NDP"};
+//        
+//        	
+//        		//Creating some polls and adding parties to them
+//        		Poll testPoll1 = new Poll("Test Poll 1",3);
+//        		Poll testPoll2 = new Poll("Test Poll 2",2);
+//        		Poll testPoll3 = new Poll("Test Poll 3",4);
+//        		testPoll1.addParty(conservative);
+//        		testPoll1.addParty(liberal);
+//        		testPoll1.addParty(ndp);
+//        		testPoll2.addParty(conservative);
+//        		testPoll2.addParty(liberal);
+//        		testPoll3.addParty(liberal);
+//        		testPoll3.addParty(ndp);
+//        		testPoll3.addParty(conservative2);
+//        		testPoll3.addParty(green);
+//        
+//        		//Creating a PollList and adding the Polls to it
+//        		PollList testList = new PollList(3,225);
+//        		testList.addPoll(testPoll1);
+//        		testList.addPoll(testPoll2);
+//        		testList.addPoll(testPoll3);
+//        		
+//        		//Creating a TextApplication object using the test PollList
+//        		TextApplication testApp = new TextApplication(testList);
+//        		
+//        		//Checking displayPollDataBySeat functionality for a single poll
+//        		System.out.println("Testing display displayPollDataBySeat for a single poll");
+//        		testApp.displayPollDataBySeat(testPoll1);
+//        		
+//        		//Checking displayPollDataBySeat functionality for a list of polls
+//        		System.out.println("Testing display displayPollDataBySeat for a pollList");
+//        		for (Poll aPoll: testList.getPolls()){
+//        			testApp.displayPollDataBySeat(aPoll);
+//        		}
+//        
+//        		//Checking displayPollsBySeat functionality for a list of polls
+//        		System.out.println("Testing display displayPollsBySeat for a pollList");
+//        		testApp.displayPollsBySeat(testNameList);
+//        		
+//        		//Checking displayPollDataByVote functionality for a single poll
+//        		System.out.println("Testing display displayPollDataByVote for a single poll");
+//        		testApp.displayPollDataByVote(testPoll1);
+//        		
+//        		//Checking displayPollDataByVote functionality for a list of polls
+//        		System.out.println("Testing display displayPollDataByVote for a pollList");
+//        		for (Poll aPoll: testList.getPolls()){
+//        			testApp.displayPollDataByVote(aPoll);
+//        		}
+//        
+//        		//Checking displayPollsByVote functionality for a list of polls
+//        		System.out.println("Testing display displayPollsByVote for a pollList");
+//        		testApp.displayPollsByVote(testNameList);
     }
 }
