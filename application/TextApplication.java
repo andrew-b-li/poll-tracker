@@ -1,12 +1,17 @@
 // Andrew Li's class
 
-package model;
+package application;
 
 import java.util.Scanner;
 
+import model.Factory;
+import model.Party;
+import model.Poll;
+import model.PollList;
+
 /**
  * @author Andrew
- * @version iteration 1
+ * @version iteration 1	
  * 
  * The class TextApplication utilizes all of the other classes (Party, Poll, PollList, and Factory)
  * in order to form a complete text-based application. 
