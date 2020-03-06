@@ -29,6 +29,7 @@ public class SetupPollTrackerController extends PollTrackerController {
 	private void createNewPolls() {
 		String[] nameList = new String[localNumberOfParties];
 		for(int i=0;i<nameList.length;i++) {
+			// title party names "1,2,3,etc."
 			nameList[i] = Integer.toString(i+1);
 		}
 		
