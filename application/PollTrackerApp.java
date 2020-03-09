@@ -63,7 +63,8 @@ public class PollTrackerApp extends Application {
 		PrintStream visualizationStream = new PrintStream(visualization);
 		PrintStream old = System.out;
 		System.setOut(visualizationStream);
-		(new TextApplication(polls)).displayPollsBySeat(factory.getPartyNames(),DEFAULT_NUMBER_OF_SEATS);
+		(new TextApplication(polls)).displayPollsBySeat(factory.getPartyNames(), polls.getNumOfSeats());
+		//replaced DEFAULT_NUMBER_OF_SEATS
 		System.out.flush();
 		System.setOut(old);
 		visualizationStream.close();

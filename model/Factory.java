@@ -87,6 +87,30 @@ public class Factory {
 		return list;
 	}
 	
+	//creating empty poll list
+	
+	public PollList createEmptyPollList(int numOfPolls) {
+		PollList list = new PollList(numOfPolls,numOfSeats);
+		for (int counter = 0; counter < numOfPolls; counter++) {
+			list.addPoll(createEmptyPoll("Poll" + counter));
+		}
+		return list;
+	}
+	
+	//creating empty poll
+	
+	public Poll createEmptyPoll(String name) {
+		
+		System.out.println("Empty poll: "+name);
+		//System.out.println("partyNames: "+partyNames.length);		
+		Poll poll = new Poll(name, partyNames.length);
+		
+		for (int i=0; i<partyNames.length; i++) {
+			poll.addParty(new Party(partyNames[i], 0.0f,0.0f));
+		}
+		return poll;
+	}
+	
 	public PollList promptForPollList(int numOfPolls) {
 		return createRandomPollList(numOfPolls);
 	}

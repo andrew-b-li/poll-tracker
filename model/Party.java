@@ -138,6 +138,7 @@ public class Party {
         int expectedNumberOfSeats = (int) Math.round(projectedNumberOfSeats / numOfSeatsPerStar);
 
         // Convert visual representation string array from textVisualization method to string.
+        
         String[] textVisualizationBySeats = textVisualization(maxStars, expectedNumberOfSeats, starsNeededForMajority);
         String textVisualizationBySeatsString = "";
         textVisualizationBySeatsString = Stream.of(textVisualizationBySeats).collect(Collectors.joining());

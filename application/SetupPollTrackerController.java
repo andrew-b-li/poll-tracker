@@ -22,7 +22,11 @@ public class SetupPollTrackerController extends PollTrackerController {
 	
 	public void setPollTrackerApp(PollTrackerApp app) {
 		this.app = app;
-		createNewPolls();
+		if (localNumberOfParties >= 0 && localNumberOfPolls >= 0 && localNumberOfSeats >= 0) {
+			createNewPolls();
+		} else {
+			handleClear();
+		}
 	}
 	
 	// helper method
@@ -38,7 +42,7 @@ public class SetupPollTrackerController extends PollTrackerController {
 		localFactory.setPartyNames(nameList);
 		
 		//create local pollList object
-		localPolls = localFactory.createRandomPollList(localNumberOfPolls);
+		localPolls = localFactory.createEmptyPollList(localNumberOfPolls);
 		
 		//copy local versions of polls and factory to main app
 		app.setPolls(localPolls);
@@ -60,7 +64,12 @@ public class SetupPollTrackerController extends PollTrackerController {
 		localNumberOfSeats = Integer.parseInt(numberOfSeats.getText());
 		localNumberOfParties = Integer.parseInt(numberOfParties.getText());
 		
-		createNewPolls();
+		if (localNumberOfParties >= 0 && localNumberOfPolls >= 0 && localNumberOfSeats >= 0) {
+			createNewPolls();
+		} else {
+			handleClear();
+		}
+		
 		refresh();
 		
 	}
