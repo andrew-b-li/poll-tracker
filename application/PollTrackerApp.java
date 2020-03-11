@@ -52,8 +52,7 @@ public class PollTrackerApp extends Application {
 			controller.setPollTrackerApp(this);
 		} catch (IOException e1) {
 			System.out.println("Problem loading FXML file " + FXMLFilename);
-            e1.printStackTrace();
-
+			e1.printStackTrace();
 		}
 		return aTab;
 	}
@@ -65,6 +64,7 @@ public class PollTrackerApp extends Application {
 		PrintStream old = System.out;
 		System.setOut(visualizationStream);
 		(new TextApplication(polls)).displayPollsBySeat(factory.getPartyNames());
+		//replaced DEFAULT_NUMBER_OF_SEATS
 		System.out.flush();
 		System.setOut(old);
 		visualizationStream.close();
@@ -80,7 +80,7 @@ public class PollTrackerApp extends Application {
 		String numOfSeats = "Number of seats: " + polls.getNumOfSeats() + "\n";
 		
 		String numOfPolls = "Number of polls: " + polls.getPolls().length + "\n";
-
+		
 		vizualizationTextArea.setText(partyNames + numOfSeats + numOfPolls + visualization.toString());		
 	}
 	
@@ -102,11 +102,10 @@ public class PollTrackerApp extends Application {
 		 * use the second if you want a list of empty polls to start with.
 		 */
 		
-
-        String[] nameList = {"Liberal","NDP","Green"};
-        factory.setPartyNames(nameList);
-        
-		polls = factory.createRandomPollList(DEFAULT_NUMBER_OF_POLLS);
+		//String[] nameList = {"Liberal","NDP","Green"};
+		//factory.setPartyNames(nameList);
+		
+		//polls = factory.createRandomPollList(DEFAULT_NUMBER_OF_POLLS);
 		//polls = new PollList(DEFAULT_NUMBER_OF_POLLS, DEFAULT_NUMBER_OF_SEATS);
 			
 		/* Uncomment the line for the view you are working on.  All should be uncommented for
@@ -116,7 +115,7 @@ public class PollTrackerApp extends Application {
 		 * solution.
 		 */
 		TabPane root = new TabPane(
-				//createTab("Setup Poll Tracker", FXML_FILES_LOCATION + "SetupPollTrackerView.fxml"),
+				createTab("Setup Poll Tracker", FXML_FILES_LOCATION + "SetupPollTrackerView.fxml"),
 				//createTab("Setup Parties", FXML_FILES_LOCATION + "SetupPartiesView.fxml"),
 				createTab("Add Poll", FXML_FILES_LOCATION + "AddPollView.fxml"),
 				//createTab("Edit Poll", FXML_FILES_LOCATION + "EditPollView.fxml"),
