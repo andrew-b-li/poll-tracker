@@ -227,7 +227,7 @@ public class TextApplication {
      * 
      * Creates a TextApplication object then presents the poll data 
      * 
-     * @param partyNames		An array of strings containing the names of parties to be included in the aggregate poll
+     *
      */
     public void run() {
         Scanner keyboard = new Scanner(System.in);
@@ -272,6 +272,8 @@ public class TextApplication {
 
     /**
      * The main() method simply creates a TextApplication object and calls the run() method
+     * 
+     * @param args Arguments passed to the main routine
      */
     public static void main(String[] args) {
         TextApplication app = new TextApplication();

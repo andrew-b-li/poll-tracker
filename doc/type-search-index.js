@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"application","l":"AddPollController"},{"l":"All Classes","url":"allclasses-index.html"},{"p":"application","l":"EditPollController"},{"p":"application","l":"PollTrackerApp"},{"p":"application","l":"PollTrackerController"},{"p":"application","l":"SetupPollTrackerController"},{"p":"application","l":"TextApplication"}]

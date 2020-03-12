@@ -106,11 +106,13 @@ public class PollList {
 			for(int i=0;i<polls.length;i++) {
 				
 				// Store the current poll information associated with the current search party in a temporary object
-				if (this.polls[i].getParty(partyNames[k]) != null) {
-					if(this.polls[i].getParty(partyNames[k]).getName().contentEquals(partyNames[k])) {
-						counter++;
-						averageSeats = averageSeats + this.polls[i].getParty(partyNames[k]).getProjectedNumberOfSeats();
-						averagePercent = averagePercent + this.polls[i].getParty(partyNames[k]).getProjectedPercentageOfVotes();
+				if (this.polls[i] != null) {
+					if (this.polls[i].getParty(partyNames[k]) != null) {
+						if(this.polls[i].getParty(partyNames[k]).getName().contentEquals(partyNames[k])) {
+							counter++;
+							averageSeats = averageSeats + this.polls[i].getParty(partyNames[k]).getProjectedNumberOfSeats();
+							averagePercent = averagePercent + this.polls[i].getParty(partyNames[k]).getProjectedPercentageOfVotes();
+						}
 					}
 				}
 			}
