@@ -3,3 +3,8 @@
 /Poll.class
 /PollList.class
 /TextApplication.class
+/Poll$SeatsComparator.class
+/Poll$VotesComparator.class
+/PollTrackerApp.class
+/PollTrackerController.class
+/SetupPartiesController.class
