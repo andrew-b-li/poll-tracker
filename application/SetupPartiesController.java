@@ -2,8 +2,6 @@ package application;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.*;
-import javafx.scene.*;
 import javafx.scene.control.*;
 import model.Factory;
 
@@ -13,6 +11,7 @@ public class SetupPartiesController extends PollTrackerController {
 	private ChoiceBox<String> partyMenu;
 	private ObservableList<String> partyNames;
 	private TextField newPartyName;
+	
 	
 	private Factory localFactory;
 	
