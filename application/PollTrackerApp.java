@@ -104,7 +104,7 @@ public class PollTrackerApp extends Application {
 		
 		//String[] partyList = {"Green", "Blue", "Red"};
 		//factory.setPartyNames(partyList);
-		//polls = factory.createRandomPollList(DEFAULT_NUMBER_OF_POLLS);
+		polls = factory.createRandomPollList(DEFAULT_NUMBER_OF_POLLS);
 		//polls = new PollList(DEFAULT_NUMBER_OF_POLLS, DEFAULT_NUMBER_OF_SEATS);
 			
 		/* Uncomment the line for the view you are working on.  All should be uncommented for
