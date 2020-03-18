@@ -14,8 +14,8 @@ import javafx.scene.control.TextField;
  * @author Dvij
  * @version iteration 2
  * The class EditPollController extends PollTrackerController and allows for users to interact 
- * with the "Edit Poll" tab in the GUI. It has a methods with handle the clicking of the clear 
- * and an overwrite of the refresh method which is run each time the tab is opened
+ * with the "Edit Poll" tab in the GUI. It has methods with handle the clicking of the clear 
+ * and submit buttons along with an overwrite of the refresh method which is run each time the tab is opened
  */
 
 public class EditPollController extends PollTrackerController{
@@ -47,9 +47,9 @@ public class EditPollController extends PollTrackerController{
     }
     
     /**
-     * Edits the party in the poll selected with the number of seats and projected 
-     * percentage of votes provided by the user. The list of polls which is visualized is changed 
-     * to reflect these edits.
+     * Upon the clicking of the 'Submit' button, edits the party in the poll selected with 
+     * the number of seats and projected percentage of votes provided by the user. The list of 
+     * polls which is visualized is also changed to reflect these edits.
      * 
      * @param event FXML detection for mouse click
      */
@@ -98,7 +98,7 @@ public class EditPollController extends PollTrackerController{
     
     /**
      * Refreshes the tab upon loading of the program and the opening of the tab by the user. 
-     * Populates the choice boxes with the most recent information on the polls being visualized.
+     * Populates the choice boxes with the most recent information of the polls being visualized.
      */
     
     public void refresh() {
