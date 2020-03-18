@@ -1,5 +1,3 @@
-﻿// Dvij's class
-
 package model;
 
 import java.util.Arrays;
@@ -17,6 +15,8 @@ import java.util.Comparator;
  * number of total parties in the poll. The class has sorters which sort the poll by
  * either seats won by each party or percentage of votes. 
  */
+
+
 public class Poll {
     private String name;
     private Party[] parties;
@@ -207,8 +207,8 @@ public class Poll {
 
     /**
      * Convert the information contained within a poll to a string with 
-     * format '<name><newline><string representation of first party><newline>
-     * <string representation of second party><newline>..."
+     * format '(name)(newline)(string representation of first party)(newline)
+     * (string representation of second party)(newline)..."
      */
     @Override
     public String toString() {

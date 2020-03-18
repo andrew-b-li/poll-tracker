@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 import model.Factory;
 import model.PollList;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -52,7 +53,6 @@ public class PollTrackerApp extends Application {
 			controller.setPollTrackerApp(this);
 		} catch (IOException e1) {
 			System.out.println("Problem loading FXML file " + FXMLFilename);
-			e1.printStackTrace();
 		}
 		return aTab;
 	}
@@ -64,7 +64,6 @@ public class PollTrackerApp extends Application {
 		PrintStream old = System.out;
 		System.setOut(visualizationStream);
 		(new TextApplication(polls)).displayPollsBySeat(factory.getPartyNames());
-		//replaced DEFAULT_NUMBER_OF_SEATS
 		System.out.flush();
 		System.setOut(old);
 		visualizationStream.close();
@@ -101,9 +100,6 @@ public class PollTrackerApp extends Application {
 		 * Use the first if you need the application to run with some randomly generated.
 		 * use the second if you want a list of empty polls to start with.
 		 */
-		
-		//String[] partyList = {"Green", "Blue", "Red"};
-		//factory.setPartyNames(partyList);
 		polls = factory.createRandomPollList(DEFAULT_NUMBER_OF_POLLS);
 		//polls = new PollList(DEFAULT_NUMBER_OF_POLLS, DEFAULT_NUMBER_OF_SEATS);
 			
@@ -117,7 +113,7 @@ public class PollTrackerApp extends Application {
 				//createTab("Setup Poll Tracker", FXML_FILES_LOCATION + "SetupPollTrackerView.fxml"),
 				//createTab("Setup Parties", FXML_FILES_LOCATION + "SetupPartiesView.fxml"),
 				//createTab("Add Poll", FXML_FILES_LOCATION + "AddPollView.fxml"),
-				createTab("Edit Poll", FXML_FILES_LOCATION + "EditPollView.fxml"),
+				//createTab("Edit Poll", FXML_FILES_LOCATION + "EditPollView.fxml"),
 				//createTab("Visualize Poll", FXML_FILES_LOCATION + "VisualizePollView.fxml")
 				getDefaultVisualization()
 									);
