@@ -1,3 +1,4 @@
+  
 package application;
 	
 import java.io.ByteArrayOutputStream;
@@ -63,7 +64,7 @@ public class PollTrackerApp extends Application {
 		PrintStream visualizationStream = new PrintStream(visualization);
 		PrintStream old = System.out;
 		System.setOut(visualizationStream);
-		(new TextApplication(polls)).displayPollsBySeat(factory.getPartyNames(), polls.getNumOfSeats());
+		(new TextApplication(polls)).displayPollsBySeat(factory.getPartyNames());
 		//replaced DEFAULT_NUMBER_OF_SEATS
 		System.out.flush();
 		System.setOut(old);
@@ -102,9 +103,8 @@ public class PollTrackerApp extends Application {
 		 * use the second if you want a list of empty polls to start with.
 		 */
 		
-		//String[] nameList = {"Liberal","NDP","Green"};
-		//factory.setPartyNames(nameList);
-		
+		//String[] partyList = {"Green", "Blue", "Red"};
+		//factory.setPartyNames(partyList);
 		//polls = factory.createRandomPollList(DEFAULT_NUMBER_OF_POLLS);
 		//polls = new PollList(DEFAULT_NUMBER_OF_POLLS, DEFAULT_NUMBER_OF_SEATS);
 			
@@ -115,9 +115,9 @@ public class PollTrackerApp extends Application {
 		 * solution.
 		 */
 		TabPane root = new TabPane(
-				createTab("Setup Poll Tracker", FXML_FILES_LOCATION + "SetupPollTrackerView.fxml"),
+				//createTab("Setup Poll Tracker", FXML_FILES_LOCATION + "SetupPollTrackerView.fxml"),
 				//createTab("Setup Parties", FXML_FILES_LOCATION + "SetupPartiesView.fxml"),
-				createTab("Add Poll", FXML_FILES_LOCATION + "AddPollView.fxml"),
+				//createTab("Add Poll", FXML_FILES_LOCATION + "AddPollView.fxml"),
 				createTab("Edit Poll", FXML_FILES_LOCATION + "EditPollView.fxml"),
 				//createTab("Visualize Poll", FXML_FILES_LOCATION + "VisualizePollView.fxml")
 				getDefaultVisualization()

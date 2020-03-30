@@ -42,8 +42,9 @@ public class SetupPollTrackerController extends PollTrackerController {
 		localFactory.setPartyNames(nameList);
 		
 		//create local pollList object
-		localPolls = localFactory.createEmptyPollList(localNumberOfPolls);
-		
+		//localPolls = localFactory.createEmptyPollList(localNumberOfPolls);
+		localPolls = localFactory.createRandomPollList(localNumberOfPolls);
+
 		//copy local versions of polls and factory to main app
 		app.setPolls(localPolls);
 		app.setFactory(localFactory);
