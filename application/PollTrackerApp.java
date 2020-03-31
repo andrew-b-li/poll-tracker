@@ -72,17 +72,24 @@ public class PollTrackerApp extends Application {
 		
 		StringBuilder partyNames = new StringBuilder();
 		partyNames.append("Party names: ");
-		for (String name : factory.getPartyNames()) {
-			partyNames.append(name);
-			partyNames.append(", ");
-		}
-		partyNames.append("\n");
-		
-		String numOfSeats = "Number of seats: " + polls.getNumOfSeats() + "\n";
-		
-		String numOfPolls = "Number of polls: " + polls.getPolls().length + "\n";
-		
-		vizualizationTextArea.setText(partyNames + numOfSeats + numOfPolls + visualization.toString());		
+		// added try catch block
+		try {
+			for (String name : factory.getPartyNames()) {
+				partyNames.append(name);
+				partyNames.append(", ");
+			}
+			
+			partyNames.append("\n");
+			
+			String numOfSeats = "Number of seats: " + polls.getNumOfSeats() + "\n";
+			
+			String numOfPolls = "Number of polls: " + polls.getPolls().length + "\n";
+			
+			vizualizationTextArea.setText(partyNames + numOfSeats + numOfPolls + visualization.toString());
+			
+		} catch (NullPointerException e) {
+			System.out.println("Empty partyNames");
+		}		
 	}
 	
 	// Remove this method if you use your own visualization.	
@@ -115,9 +122,9 @@ public class PollTrackerApp extends Application {
 		 * solution.
 		 */
 		TabPane root = new TabPane(
-				//createTab("Setup Poll Tracker", FXML_FILES_LOCATION + "SetupPollTrackerView.fxml"),
+				createTab("Setup Poll Tracker", FXML_FILES_LOCATION + "SetupPollTrackerView.fxml"),
 				//createTab("Setup Parties", FXML_FILES_LOCATION + "SetupPartiesView.fxml"),
-				//createTab("Add Poll", FXML_FILES_LOCATION + "AddPollView.fxml"),
+				createTab("Add Poll", FXML_FILES_LOCATION + "AddPollView.fxml"),
 				createTab("Edit Poll", FXML_FILES_LOCATION + "EditPollView.fxml"),
 				//createTab("Visualize Poll", FXML_FILES_LOCATION + "VisualizePollView.fxml")
 				getDefaultVisualization()

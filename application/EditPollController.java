@@ -105,18 +105,24 @@ public class EditPollController extends PollTrackerController{
     	// Making local copies of the PollList and Factory class in PollTrackerApp
     	localFactory = getFactory();
     	localPolls = getPolls();
-    	Poll[] polls = localPolls.getPolls();
-    	String[] pollNames = new String[polls.length];
+    	// try catch block to aid with setting tab for first time
+    	try {
+    		Poll[] polls = localPolls.getPolls();
+    		String[] pollNames = new String[polls.length];
     	
-    	// Setting the pollEditName choice box to display all the polls which are a part of PollList
-    	for(int i= 0; i < pollNames.length; i++) {
-    		pollNames[i] = polls[i].getPollName();
+    		// Setting the pollEditName choice box to display all the polls which are a part of PollList
+    		for(int i= 0; i < pollNames.length; i++) {
+    			pollNames[i] = polls[i].getPollName();
+    		}
+    		pollEditName.setItems(FXCollections.observableArrayList(pollNames));
+    		
+        	// Setting the partyEditName choice box to display all the parties which are included in Polls
+        	String[] partyNames = localFactory.getPartyNames();
+        	partyEditName.setItems(FXCollections.observableArrayList(partyNames));
+        	
+    	} catch (NullPointerException e) {
+    		System.out.println("Empty poll List continuing");
     	}
-    	pollEditName.setItems(FXCollections.observableArrayList(pollNames));
-    	
-    	// Setting the partyEditName choice box to display all the parties which are included in Polls
-    	String[] partyNames = localFactory.getPartyNames();
-    	partyEditName.setItems(FXCollections.observableArrayList(partyNames));
     	
     	numOfSeats.clear();
     	projectedPercentageOfVotes.clear();

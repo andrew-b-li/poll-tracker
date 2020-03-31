@@ -61,12 +61,18 @@ public class TextApplication {
      * @param maxNumOfSeats 	The total number of seats available
      */
     public void displayPollsBySeat(String[] partyNames) {
-        for (Poll aPoll: polls.getPolls()) {
-            displayPollDataBySeat(aPoll);
-        }
-
-        Poll aggregate = polls.getAggregatePoll(partyNames);
-        displayPollDataBySeat(aggregate);
+    	// added try catch block
+    	try {
+    		for (Poll aPoll: polls.getPolls()) {
+    			displayPollDataBySeat(aPoll);
+    		}
+    		
+        	Poll aggregate = polls.getAggregatePoll(partyNames);
+            displayPollDataBySeat(aggregate);
+            
+    	} catch (NullPointerException e) {
+    		System.out.println("Empty poll List");
+    	}
     }
 
     /**
