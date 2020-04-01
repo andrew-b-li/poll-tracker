@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
@@ -28,6 +29,8 @@ public class EditPollController extends PollTrackerController{
     private ChoiceBox<String> pollEditName;
     @FXML
     private ChoiceBox<String> partyEditName;
+    @FXML
+    private Label numOfSeatsTextBox;
     
     private PollList localPolls;
     private Factory localFactory;
@@ -105,6 +108,9 @@ public class EditPollController extends PollTrackerController{
     	// Making local copies of the PollList and Factory class in PollTrackerApp
     	localFactory = getFactory();
     	localPolls = getPolls();
+    	// Initializes the max number of seats available in the election
+    	String numOfSeatsInPoll = Integer.toString(localPolls.getNumOfSeats());
+    	numOfSeatsTextBox.setText("/" + numOfSeatsInPoll);
     	Poll[] polls = localPolls.getPolls();
     	String[] pollNames = new String[polls.length];
     	
