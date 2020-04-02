@@ -6,6 +6,14 @@ import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
 
+/**
+ * @author Olivia
+ * @version iteration 2
+ * The class SetupPollController extends PollTrackerController,
+ * the user can setup a new poll tracker by specifying the number of seats
+ * and parties in the election and the number of polls to track
+ */
+
 public class SetupPollTrackerController extends PollTrackerController {
 	private PollTrackerApp app;
 	@FXML
@@ -29,7 +37,17 @@ public class SetupPollTrackerController extends PollTrackerController {
 		}
 	}
 	
-	// helper method
+	/**
+     * This helper method called after user enters values for
+     * number of polls, seats, and parties
+     * 
+     * Creates a String array for party names and names them
+     * 1 and onward at each index
+     * 
+     * Creates local objects for Factory and PollList, then
+     * copies to application
+     */
+	
 	private void createNewPolls() {
 		String[] nameList = new String[localNumberOfParties];
 		for(int i=0;i<nameList.length;i++) {
@@ -50,6 +68,13 @@ public class SetupPollTrackerController extends PollTrackerController {
 		app.setFactory(localFactory);
 		
 	}
+	
+	/**
+     * When user presses 'Clear' button, all current
+     * infomation entered in the text boxes is initialized
+     * to zero and refresh() method called
+     * 
+     */
 
 	public void handleClear() {
 		localNumberOfPolls = 0;
@@ -58,6 +83,18 @@ public class SetupPollTrackerController extends PollTrackerController {
 		refresh();
 		
 	}
+	
+	 /**
+     * When user presses 'Submit' button, application should have a new PollList with
+     * input from the user for the number of polls to track and the number of seats in election
+     * 
+     * The Factory object used by the application should indicate the
+     * number of seats and parties. Information is displayed in Visualize Polls tab.
+     * 
+     * If the value for the numer of parties, polls, and seats is valid, createNewPolls()
+     * method is called
+     * 
+     */
 	
 	public void handleSubmit() {
 		//takes arg as string and converts to int
@@ -74,6 +111,11 @@ public class SetupPollTrackerController extends PollTrackerController {
 		refresh();
 		
 	}
+	
+    /**
+     * During initial loading ofprogram and opening of tab by user, tab is refreshed 
+     * Fill choice boxes with the most recent information of the polls being visualized.
+     */
 	
 	public void refresh() {
 		//takes arg as int and converts to string
