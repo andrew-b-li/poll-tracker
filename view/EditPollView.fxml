@@ -30,7 +30,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="371.0" layoutY="128.0" text="/345">
+      <Label fx:id="numOfSeatsTextBox" layoutX="371.0" layoutY="128.0">
          <font>
             <Font size="14.0" />
          </font>
