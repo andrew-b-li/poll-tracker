@@ -1,3 +1,5 @@
+// Andrew Li's class
+
 package application;
 
 import java.util.Scanner;

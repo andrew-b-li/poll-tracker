@@ -5,7 +5,7 @@ import java.util.Random;
  //(For teams of 4 or less this class is optional.)
 public class Factory {
 	private int numOfSeats;
-	String[] partyNames = {"BQ","CPC","Green","Liberal","NDP","PPC","Rhinoceros"};
+	private String[] partyNames;
 	
 	public Factory(int numOfSeats) {
 		this.numOfSeats = numOfSeats;
