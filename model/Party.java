@@ -102,7 +102,7 @@ public class Party {
     }
 
     /**
-     * Returns a string containing party information, with the format: '<name>(<projected % of votes>%, <projected seats>)'.
+     * Returns a string containing party information, with the format: 'Party Name (projected % of votes, projected seats)'.
      * 
      * @return formatted party information.
      */

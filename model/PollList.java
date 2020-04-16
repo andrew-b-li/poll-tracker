@@ -22,7 +22,7 @@ public class PollList {
      * The constructor takes the name of the poll and the maximum number of
      * parties this poll will take as arguments
      * 
-     * @param Poll[] polls	 An array of polls that should be in the list
+     * @param numOfPolls	 Max number of polls that can be held by the poll list An array of polls that should be in the list
      * @param numOfSeats 	 The total number of seats
      */
 	
@@ -45,7 +45,7 @@ public class PollList {
 	 * Add polls to the poll list, if the argument in null: print error
 	 * message, call getEmptyPollIndex, return sent name equals if it
 	 * equals the name in polls, add polls to list if it has goodIndex
-	 * @param aPoll
+	 * @param aPoll 		The poll being added
 	 */
 	public void addPoll(Poll aPoll) {
 		if (aPoll == null) {
