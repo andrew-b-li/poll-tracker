@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"application","l":"AddPollController"},{"p":"application","l":"EditPollController"},{"p":"model","l":"Factory"},{"p":"model","l":"Party"},{"p":"model","l":"Poll"},{"p":"model","l":"PollList"},{"p":"application","l":"SetupPollTrackerController"}]
